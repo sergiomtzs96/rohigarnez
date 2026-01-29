@@ -1,0 +1,129 @@
+[
+    {
+        "name": "Mantenimiento sin socorrista",
+        "description": "Mantenimiento completo para piscinas comunitarias",
+        "services": [
+            "Limpieza y aspirado completo del vaso",
+            "Cepillado de paredes y fondo",
+            "Vaciado de skimmers y prefiltros",
+            "Análisis y control de químico del agua",
+            "Limpieza de línea de flotación",
+            "Control y ajuste de PH y cloro",
+            "Revisión del sistema de filtración",
+            "Limpieza de filtros",
+            "Mantenimiento preventivo de equipos",
+            "Informe mensual del estado de la piscina"
+        ],
+        "benefits": [
+            {
+                "icon": "Shield",
+                "title": "Experiencia Profesional",
+                "description": "Más de 15 años cuidando piscinas comunitarias"
+            },
+            {
+                "icon": "Clock",
+                "title": "Puntualidad Garantizada",
+                "description": "Visitas programadas sin interrupciones"
+            },
+            {
+                "icon": "Users",
+                "title": "Equipo Cualificado",
+                "description": "Técnicos certificados y con experiencia"
+            },
+            {
+                "icon": "CheckCircle",
+                "title": "Calidad Asegurada",
+                "description": "Productos homologados y con experiencia"
+            }
+        ]
+    },
+    {
+        "name" : "Mantenimiento con socorrista",
+        "description" : "Servicio integral con personal de vigilancia cualificado",
+        "lifeguardServices" : [
+            {
+                "title" : "Vigilancia Activa",
+                "description" : "Supervisión constante de la actividad acuática y prevención de accidentes",
+                "icon" : "Eye",
+                "critical" : true
+            },
+            {
+                "title" : "Primeros auxilios",
+                "description" : "Atención inmediata en caso de emergencia con certificado oficial.",
+                "icon" : "Users",
+                "critical" : false 
+            },
+            {
+                "title" : "Control de Aforo",
+                "description" : "Gestión del número de bañistas según normativa vigente.",
+                "icon" : "Users",
+                "critical" : false
+            },
+            {
+                "title" : "Cumplimiento Normativo",
+                "description" : "Verificación de cumplimiento de todas las normativas de seguridad",
+                "icon" : "FileText",
+                "critical"  : true
+            }
+        ],
+        "packages": [
+            {
+                "name" : "Sin Socorrista",
+                "subtitle" : "Piscinas de profundidad ≤ 1,5m",
+                "price" : "Desde 220€",
+                "period" : "/mes",
+                "description" : "Mantenimiento especializado sin necesidad de socorrista",
+                "features" : [
+                    "Control químico diario reforzado",
+                    "Limpieza diaria en temporada alta",
+                    "Registros oficiales completos",
+                    "Control de temperatura continuo",
+                    "Informes semanales",
+                    "Cumplimiento normativo garantizado"
+                ],
+                "recommended" : false,
+                "compliance" : "Cumple RD 742/2013"
+            },
+            {
+                "name" : "Con Socorrista",
+                "subtitle" : "Piscinas de profundidad > 1,5m",
+                "price" : "Desde 580€",
+                "period" : "/mes",
+                "description" : "Servicio completo con socorrista titulado",
+                "features": [
+                    "Socorrista titulado en horario de apertura",
+                    "Control químico automatizado",
+                    "Limpieza y mantenimiento diario",
+                    "Primeros auxilios certificados",
+                    "Control de aforo y seguridad",
+                    "Registros oficiales digitalizados"
+                ],
+                "recommended" : true,
+                "compliance" : "Cumple toda la normativa"
+            },
+            {
+                "name": "Premium Integral",
+                "subtitle" : "Gestión completa todo incluido",
+                "price" : "Desde 850€",
+                "period" : "/mes",
+                "description" : "Solución integral con gestión avanzada",
+                "features" : [
+                    "Equipo de socorritas (2 + personas)",
+                    "Sistemas de control automatizados",
+                    "Mantenimiento preventivo semanal",
+                    "Gestión de químicos y productos",
+                    "Asesoramiento legal continuo",
+                    "Servicio 24/7 todo el año"
+                ],
+                "recommended" : false,
+                "compliance" : "Excelencia normativa"
+            }
+        ],
+        "regulations": [
+            {
+                "title" : "RD 742/2013",
+                "description" : "Criterios técnico-sanitarios de piscinas "
+            }
+        ]
+    }
+]
