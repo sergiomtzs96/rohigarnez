@@ -205,7 +205,7 @@ export function PipeRepairPage({ onNavigate }) {
 
             <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
               <Button 
-                onClick={() => onNavigate('quote')}
+                onClick={() => onNavigate('contact')}
                 className="bg-[#70a2ad] text-white hover:bg-[#5e8b95] rounded-none h-14 px-10 text-xs tracking-[0.15em] uppercase font-bold border border-transparent transition-all min-w-[200px]"
               >
                 Solicitar Reparación

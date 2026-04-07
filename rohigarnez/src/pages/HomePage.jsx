@@ -451,7 +451,7 @@ export function HomePage({ onNavigate, user }) {
                 className="w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 ease-in-out"
               />
               <div className="absolute bottom-8 left-8 right-8 z-20">
-                <div className="inline-block px-4 py-2 bg-[#70a2ad] text-white text-xs font-bold uppercase tracking-widest mb-2">
+                <div className="inline-block py-2 bg-transparent text-white text-xs font-bold uppercase tracking-widest mb-2">
                   Cobertura Nacional
                 </div>
                 <p className="text-gray-300 text-sm">

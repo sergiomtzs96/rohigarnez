@@ -144,10 +144,10 @@ export function Navbar({ currentPage, onNavigate, user, onLogout }) {
           <div className="hidden md:flex items-center space-x-4">
             {user ? (
               <div className="flex items-center space-x-4">
-                {user.type === 'admin' && (
+                {user.role === 'admin' && (
                   <Button
                     variant="ghost"
-                    onClick={() => handleNavClick('admin')}
+                    onClick={() => handleNavClick('dashboard')}
                     className="text-gray-300 hover:text-white hover:bg-white/5 font-medium uppercase text-xs tracking-wider"
                   >
                     Admin
@@ -155,7 +155,7 @@ export function Navbar({ currentPage, onNavigate, user, onLogout }) {
                 )}
                 <div className="flex items-center space-x-2 text-gray-400">
                   <User className="w-4 h-4" />
-                  <span className="text-xs font-medium uppercase tracking-wider">{user.type === 'admin' ? 'Admin' : 'Usuario'}</span>
+                  <span className="text-xs font-medium uppercase tracking-wider">{user.role === 'admin' ? 'Admin' : 'Usuario'}</span>
                 </div>
                 <Button
                   variant="ghost"
@@ -260,9 +260,9 @@ export function Navbar({ currentPage, onNavigate, user, onLogout }) {
             <div className="pt-6 space-y-3">
               {user ? (
                 <div className="space-y-3">
-                  {user.type === 'admin' && (
+                  {user.role === 'admin' && (
                     <Button 
-                      onClick={() => handleNavClick('admin')}
+                      onClick={() => handleNavClick('dashboard')}
                       className="w-full bg-[#1a1c1e] text-white hover:bg-[#25282b]"
                     >
                       Panel Admin
@@ -270,7 +270,7 @@ export function Navbar({ currentPage, onNavigate, user, onLogout }) {
                   )}
                   <div className="flex items-center justify-center space-x-2 text-gray-400 py-2">
                     <User className="w-4 h-4" />
-                    <span className="text-sm uppercase tracking-wider">{user.type === 'admin' ? 'Administrador' : 'Usuario'}</span>
+                    <span className="text-sm uppercase tracking-wider">{user.role === 'admin' ? 'Administrador' : 'Usuario'}</span>
                   </div>
                   <Button 
                     onClick={onLogout}

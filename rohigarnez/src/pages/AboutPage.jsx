@@ -33,7 +33,7 @@ export function AboutPage({ onNavigate }) {
     const milestones = [
         {
             year: "2009",
-            title: "Fundación de AquaClean Pro",
+            title: "Fundación de Rogigarnez S.L.",
             description: "Iniciamos nuestra actividad en Madrid con un equipo de 3 técnicos especializados."
         },
         {
@@ -108,7 +108,7 @@ export function AboutPage({ onNavigate }) {
                                     <span className="text-[#70a2ad] text-xs font-bold uppercase tracking-[0.2em]">Nuestra Historia</span>
                                 </div>
                                 <h1 className="text-4xl lg:text-6xl font-light font-[Urbanist] leading-tight mb-6">
-                                    Sobre <span className="font-semibold text-white">AquaClean Pro</span>
+                                    Sobre <span className="font-semibold text-white">Rohigarnez S.L.</span>
                                 </h1>
                                 <p className="text-lg text-gray-400 font-light leading-relaxed max-w-xl">
                                     Somos una empresa familiar con más de 15 años de experiencia dedicada al
@@ -140,7 +140,7 @@ export function AboutPage({ onNavigate }) {
                             <div className="relative z-10">
                                 <ImageWithFallback
                                     src="https://images.unsplash.com/photo-1465198901163-2d15b88fecea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB0ZWFtJTIwcG9vbCUyMG1haW50ZW5hbmNlfGVufDF8fHx8MTc1OTMxNDk1MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                                    alt="Equipo profesional de AquaClean Pro"
+                                    alt="Equipo profesional de Rohigarnez S.L."
                                     className="w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
                                 />
                             </div>
