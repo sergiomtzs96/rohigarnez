@@ -39,13 +39,13 @@ export function Footer({ onNavigate }) {
               </p>
             </div>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 flex items-center justify-center border border-white/10 hover:border-[#70a2ad] text-gray-500 hover:text-[#70a2ad] transition-all bg-[#141516] hover:bg-[#70a2ad]/5">
+              <a href="https://facebook.com/" className="w-10 h-10 flex items-center justify-center border border-white/10 hover:border-[#70a2ad] text-gray-500 hover:text-[#70a2ad] transition-all bg-[#141516] hover:bg-[#70a2ad]/5">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="https://www.instagram.com/rohigarnez_sl/?hl=es" className="w-10 h-10 flex items-center justify-center border border-white/10 hover:border-[#70a2ad] text-gray-500 hover:text-[#70a2ad] transition-all bg-[#141516] hover:bg-[#70a2ad]/5">
+              <a href="https://www.instagram.com/" className="w-10 h-10 flex items-center justify-center border border-white/10 hover:border-[#70a2ad] text-gray-500 hover:text-[#70a2ad] transition-all bg-[#141516] hover:bg-[#70a2ad]/5">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="w-10 h-10 flex items-center justify-center border border-white/10 hover:border-[#70a2ad] text-gray-500 hover:text-[#70a2ad] transition-all bg-[#141516] hover:bg-[#70a2ad]/5">
+              <a href="https://twitter.com/" className="w-10 h-10 flex items-center justify-center border border-white/10 hover:border-[#70a2ad] text-gray-500 hover:text-[#70a2ad] transition-all bg-[#141516] hover:bg-[#70a2ad]/5">
                 <Twitter className="w-4 h-4" />
               </a>
             </div>
@@ -97,7 +97,7 @@ export function Footer({ onNavigate }) {
                 </div>
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wider block mb-1">Teléfono</span>
-                  <span className="text-sm text-white font-light group-hover:text-[#70a2ad] transition-colors">+34 686 53 16 94</span>
+                  <span className="text-sm text-white font-light group-hover:text-[#70a2ad] transition-colors">+34 666 444 333</span>
                 </div>
               </div>
 
@@ -107,7 +107,7 @@ export function Footer({ onNavigate }) {
                 </div>
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wider block mb-1">Email</span>
-                  <span className="text-sm text-white font-light group-hover:text-[#70a2ad] transition-colors">slnpiscinas22@gmail.com</span>
+                  <span className="text-sm text-white font-light group-hover:text-[#70a2ad] transition-colors">rohigarnez@mail.com</span>
                 </div>
               </div>
 
@@ -118,8 +118,8 @@ export function Footer({ onNavigate }) {
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wider block mb-1">Oficinas</span>
                   <span className="text-sm text-white font-light group-hover:text-[#70a2ad] transition-colors leading-relaxed">
-                    Calle Santa Bárbara, 6<br />
-                    28609 Sevilla La Nueva
+                    Calle Desconocida, 6<br />
+                    12345 Madrid
                   </span>
                 </div>
               </div>

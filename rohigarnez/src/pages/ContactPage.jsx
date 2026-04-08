@@ -50,25 +50,25 @@ export function ContactPage({ onNavigate }) {
     {
       icon: Phone,
       label: "CENTRALITA",
-      value: "+34 686 53 16 94",
+      value: "+34 666 444 333",
       sub: "L-V 08:00 - 18:00"
     },
     {
       icon: Mail,
       label: "INGENIERÍA",
-      value: "slnpiscinas22@gmail.com",
+      value: "rohigarnez@mail.com",
       sub: "Respuesta < 4h"
     },
     {
       icon: MessageSquare,
       label: "SOPORTE TÉCNICO",
-      value: "slnpiscinas22@gmail.com",
+      value: "rohigarnez@mail.com",
       sub: "Incidencias Nivel 1"
     }
   ];
 
   const headquarters = {
-    address: ["C/ Santa Bárbara, 6", "28609 Sevilla La Nueva, España"],
+    address: ["C/ Desconocida, 6", "12345 Madrid, España"],
     coords: "40.34767870154099, -4.024039427803234"
   };
 
