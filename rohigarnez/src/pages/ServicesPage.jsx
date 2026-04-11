@@ -14,204 +14,34 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
+import { useState, useEffect } from 'react';
 
 
 
 export function ServicesPage({ onNavigate }) {
-    const serviceCategories = [
-        {
-            id: 'maintenance',
-            title: 'Mantenimiento',
-            subtitle: 'Para comunidades de vecinos',
-            description: 'Servicios especializados de mantenimiento regular para piscinas comunitarias',
-            icon: Droplets,
-            color: 'bg-blue-500',
-            textAccent: 'text-blue-500',
-            services: [
-                {
-                    id: 'pools-without-lifeguard',
-                    name: 'Mantenimiento sin socorristas',
-                    description: 'Mantenimiento completo para piscinas comunitarias',
-                    page: 'pools-without-lifeguard'
-                },
-                {
-                    id: 'pools-with-lifeguard',
-                    name: 'Mantenimiento con socorristas',
-                    description: 'Servicio integral con personal de vigilancia cualificado',
-                    page: 'pools-with-lifeguard'
-                }
-            ]
-        },
-        {
-            id: 'detection',
-            title: 'Detección y Diagnóstico',
-            subtitle: 'Para todo tipo de piscinas',
-            description: 'Localización precisa de fugas y problemas técnicos',
-            icon: Search,
-            color: 'bg-purple-500',
-            textAccent: 'text-purple-500',
-            services: [
-                {
-                    id: 'leak-detection',
-                    name: 'Localización de fugas con gas trazador',
-                    description: 'Tecnología avanzada para detectar fugas',
-                    page: 'leak-detection'
-                },
-                {
-                    id: 'pressure-testing',
-                    name: 'Pruebas de presión de tuberías',
-                    description: 'Verificación exhaustiva del sistema de tuberías',
-                    page: 'pressure-testing'
-                },
-                {
-                    id: 'air-testing',
-                    name: 'Pruebas mediante aire',
-                    description: 'Mayor eficacia en la detección de problemas',
-                    page: 'air-testing'
-                }
-            ]
-        },
-        {
-            id: 'repairs',
-            title: 'Reparaciones',
-            subtitle: 'Para todo tipo de piscinas',
-            description: 'Soluciones profesionales para todo tipo de reparaciones',
-            icon: Wrench,
-            color: 'bg-orange-500',
-            textAccent: 'text-orange-500',
-            services: [
-                {
-                    id: 'pipe-repair',
-                    name: 'Reparación de tuberías',
-                    description: 'Reparación y sustitución de tuberías de piscinas',
-                    page: 'pipe-repair'
-                },
-                {
-                    id: 'crack-repair',
-                    name: 'Reparación de grietas',
-                    description: 'Según valoración previa in situ',
-                    page: 'crack-repair'
-                }
-            ]
-        },
-        {
-            id: 'construction',
-            title: 'Construcción, Rehabilitación y Obra',
-            subtitle: 'Para todo tipo de piscinas',
-            description: 'Proyectos completos de construcción y renovación',
-            icon: Hammer,
-            color: 'bg-green-500',
-            textAccent: 'text-green-500',
-            services: [
-                {
-                    id: 'liner-rehabilitation',
-                    name: 'Rehabilitación con lámina armada',
-                    description: 'Varias marcas disponibles',
-                    page: 'liner-rehabilitation'
-                },
-                {
-                    id: 'pool-construction',
-                    name: 'Construcción de piscinas de obra',
-                    description: 'Piscinas personalizadas desde cero',
-                    page: 'pool-construction'
-                },
-                {
-                    id: 'gunite',
-                    name: 'Gunitado de vasos',
-                    description: 'Aplicación profesional de gunita',
-                    page: 'gunite'
-                },
-                {
-                    id: 'grouting',
-                    name: 'Lechadas y reposición de gresites',
-                    description: 'Acabados perfectos y duraderos',
-                    page: 'grouting'
-                },
-                {
-                    id: 'stone-replacement',
-                    name: 'Cambios de piedras / coronación',
-                    description: 'Renovación de acabados exteriores',
-                    page: 'stone-replacement'
-                },
-                {
-                    id: 'stairs-construction',
-                    name: 'Construcción de escaleras de obra',
-                    description: 'Todo tipo de escaleras con diferentes acabados',
-                    page: 'stairs-construction'
-                },
-                {
-                    id: 'pump-room-elevation',
-                    name: 'Elevación de depuradoras',
-                    description: 'Casetas de PVC o de obra',
-                    page: 'pump-room-elevation'
-                }
-            ]
-        },
-        {
-            id: 'installations',
-            title: 'Instalaciones y Equipamientos',
-            subtitle: 'Para todo tipo de piscinas',
-            description: 'Instalación y mantenimiento de equipos especializados',
-            icon: Settings,
-            color: 'bg-cyan-500',
-            textAccent: 'text-cyan-500',
-            services: [
-                {
-                    id: 'salt-chlorinators',
-                    name: 'Montaje de cloradores salinos',
-                    description: 'Instalación profesional de sistemas de cloración',
-                    page: 'salt-chlorinators'
-                },
-                {
-                    id: 'ph-machines',
-                    name: 'Instalación de máquinas de pH',
-                    description: 'Control automático de pH',
-                    page: 'ph-machines'
-                },
-                {
-                    id: 'pump-replacement',
-                    name: 'Cambios / sustitución de bombas',
-                    description: 'Bombas de piscina de última generación',
-                    page: 'pump-replacement'
-                },
-                {
-                    id: 'heat-pumps',
-                    name: 'Bombas de calor para piscinas',
-                    description: 'Suministro e instalación completa',
-                    page: 'heat-pumps'
-                },
-                {
-                    id: 'filter-sand',
-                    name: 'Cambios de arenas de filtros',
-                    description: 'Renovación de medios filtrantes',
-                    page: 'filter-sand'
-                }
-            ]
-        },
-        {
-            id: 'supplies',
-            title: 'Suministros',
-            subtitle: 'Para todo tipo de piscinas',
-            description: 'Productos y materiales de primera calidad',
-            icon: Package,
-            color: 'bg-pink-500',
-            textAccent: 'text-pink-500',
-            services: [
-                {
-                    id: 'pool-covers',
-                    name: 'Lonas para piscinas',
-                    description: 'Venta e instalación de cobertores',
-                    page: 'pool-covers'
-                },
-                {
-                    id: 'pool-materials',
-                    name: 'Materiales de piscina',
-                    description: 'Suministro de todo tipo de materiales',
-                    page: 'pool-materials'
-                }
-            ]
-        }
-    ];
+
+    const [pageData, setPageData] = useState(null);
+
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch(
+                    `${import.meta.env.VITE_API_URL}/api/services/servicespages`
+                );
+
+                const data = await res.json();
+                setPageData(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const serviceCategories = pageData?.servicesCategories || [];
 
     return (
         <main className="min-h-screen bg-white">

@@ -158,7 +158,7 @@ export default function TeamPage({ onNavigate }) {
                       {member.role}
                     </p>
 
-                    <p className="text-gray-500 text-sm font-light leading-relaxed mb-6 line-clamp-2 group-hover:line-clamp-none transition-all">
+                    <p className="text-gray-500 text-sm font-light leading-relaxed mb-6 line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
                       {member.bio}
                     </p>
 

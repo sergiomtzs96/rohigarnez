@@ -13,10 +13,11 @@ app.use(express.json());
 // RUTAS
 const authRoutes = require('./routes/authRoutes');
 const pagesRoutes = require('./routes/pages');
+const servicesRoutes = require('./routes/services');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/pages', pagesRoutes);
-
+app.use('/api/services', servicesRoutes);
 // Ruta prueba
 app.get('/', (req, res) => {
   res.send('API funcionando 🚀');
