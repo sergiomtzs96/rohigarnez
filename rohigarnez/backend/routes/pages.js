@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 
 const Page = mongoose.model(
   'Page',
-  new mongoose.Schema({}, { strict: false })
+  new mongoose.Schema({}, { strict: false }),
+  'info' // 👈 colección real de MongoDB
 );
 
 router.get('/teampage', async (req, res) => {
@@ -17,6 +18,7 @@ router.get('/teampage', async (req, res) => {
 
     res.json(page);
   } catch (error) {
+    console.error(error); // importante para debug
     res.status(500).json({ message: 'Error en servidor' });
   }
 });
