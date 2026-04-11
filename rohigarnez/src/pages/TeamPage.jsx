@@ -19,25 +19,32 @@ import {
 } from 'lucide-react';
 
 export default function TeamPage({ onNavigate }) {
-  
-  const [pageData, setPageData ] = useState(null);
 
-  useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/pages/teampage`
-      );
-
-      const data = await res.json();
-      setPageData(data);
-    } catch (error) {
-      console.error('Error cargando TeamPage:', error);
-    }
+  const iconsMap = {
+    clock: <Clock className="w-8 h-8" />,
+    check: <CheckCircle className="w-8 h-8" />,
+    star: <Star className="w-8 h-8" />,
+    graduation: <GraduationCap className="w-8 h-8" />
   };
 
-  fetchData();
-}, []);
+  const [pageData, setPageData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/pages/teampage`
+        );
+
+        const data = await res.json();
+        setPageData(data);
+      } catch (error) {
+        console.error('Error cargando TeamPage:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -91,7 +98,7 @@ export default function TeamPage({ onNavigate }) {
 
                 <div className="mb-6">
                   {/* Icon wrapper - no circle */}
-                  {stat.icon}
+                  {iconsMap[stat.icon]}
                 </div>
 
                 <div className="text-4xl md:text-5xl font-light text-[#141516] mb-3 font-[Urbanist] tracking-tight group-hover:-translate-y-1 transition-transform duration-500">
