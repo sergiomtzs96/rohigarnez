@@ -1,25 +1,26 @@
 const express = require('express');
-const router = Router();
-import { model, Schema } from 'mongoose';
+const router = express.Router();
+const mongoose = require('mongoose');
 
-const Page = model(
+// modelo genérico
+const Page = mongoose.model(
   'Page',
-  new Schema({}, { strict: false })
+  new mongoose.Schema({}, { strict: false })
 );
 
-// 👉 UNA SOLA RUTA DINÁMICA
-router.get('/:key', async (req, res) => {
+// GET teampage
+router.get('/teampage', async (req, res) => {
   try {
-    const page = await Page.findOne({ key: req.params.key });
+    const page = await Page.findOne({ key: 'teampage' });
 
     if (!page) {
       return res.status(404).json({ message: 'Página no encontrada' });
     }
 
     res.json(page);
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({ message: 'Error en servidor' });
   }
 });
 
-export default router;
+module.exports = router;
