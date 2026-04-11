@@ -33,4 +33,4 @@ const ProjectsSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('InfoProjects', ProjectsSchema);
+module.exports = mongoose.model('Projects', ProjectsSchema);
