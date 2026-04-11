@@ -2,13 +2,11 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-// modelo genérico
 const Page = mongoose.model(
   'Page',
   new mongoose.Schema({}, { strict: false })
 );
 
-// GET teampage
 router.get('/teampage', async (req, res) => {
   try {
     const page = await Page.findOne({ key: 'teampage' });
