@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
@@ -19,103 +19,25 @@ import {
 } from 'lucide-react';
 
 export default function TeamPage({ onNavigate }) {
-  const teamMembers = [
-    {
-      name: "Carlos Rodríguez",
-      role: "Director Técnico y Fundador",
-      experience: "15 años",
-      specialties: ["Construcción de piscinas", "Rehabilitación", "Dirección de proyectos"],
-      certifications: ["Técnico Especialista en Piscinas", "Certificación ISO 9001"],
-      bio: "Fundador de AquaClean Pro con más de 15 años transformando espacios acuáticos. Especialista en proyectos complejos de rehabilitación y construcción.",
-      image: "professional team leader",
-      contact: { phone: "+34 666 777 888", email: "carlos@aquacleanpro.com" }
-    },
-    {
-      name: "Ana Martínez",
-      role: "Jefa de Mantenimiento",
-      experience: "12 años",
-      specialties: ["Mantenimiento preventivo", "Tratamiento químico", "Piscinas comunitarias"],
-      certifications: ["Técnica en Química del Agua", "Gestión de Instalaciones Acuáticas"],
-      bio: "Experta en mantenimiento preventivo y correctivo. Responsable de la gestión de más de 200 piscinas comunitarias en la región.",
-      image: "professional woman engineer",
-      contact: { phone: "+34 666 777 889", email: "ana@aquacleanpro.com" }
-    },
-    {
-      name: "Miguel Torres",
-      role: "Especialista en Equipos",
-      experience: "10 años",
-      specialties: ["Reparación de depuradoras", "Instalación de equipos", "Diagnóstico técnico"],
-      certifications: ["Técnico en Sistemas de Filtración", "Certificación Hayward"],
-      bio: "Especialista en diagnóstico y reparación de equipos de filtración. Formado directamente por las principales marcas del sector.",
-      image: "technician equipment specialist",
-      contact: { phone: "+34 666 777 890", email: "miguel@aquacleanpro.com" }
-    },
-    {
-      name: "Laura Vázquez",
-      role: "Coordinadora de Proyectos",
-      experience: "8 años",
-      specialties: ["Gestión de proyectos", "Atención al cliente", "Planificación"],
-      certifications: ["Project Management", "Atención al Cliente Especializada"],
-      bio: "Coordinadora de proyectos con enfoque en la excelencia del servicio al cliente. Gestiona la planificación y seguimiento de todas las obras.",
-      image: "project manager professional",
-      contact: { phone: "+34 666 777 891", email: "laura@aquacleanpro.com" }
-    },
-    {
-      name: "Javier Ruiz",
-      role: "Técnico de Campo",
-      experience: "6 años",
-      specialties: ["Mantenimiento diario", "Limpieza especializada", "Soporte técnico"],
-      certifications: ["Técnico en Mantenimiento", "Primeros Auxilios"],
-      bio: "Técnico de campo especializado en mantenimiento diario y limpieza. Conoce cada instalación y las necesidades específicas de nuestros clientes.",
-      image: "field technician worker",
-      contact: { phone: "+34 666 777 892", email: "javier@aquacleanpro.com" }
-    },
-    {
-      name: "Carmen López",
-      role: "Administración y Finanzas",
-      experience: "5 años",
-      specialties: ["Gestión administrativa", "Facturación", "Atención telefónica"],
-      certifications: ["Administración de Empresas", "Software de Gestión"],
-      bio: "Responsable de la gestión administrativa y financiera. Primer punto de contacto para consultas y coordinación de servicios.",
-      image: "administrative professional",
-      contact: { phone: "+34 666 777 893", email: "carmen@aquacleanpro.com" }
-    }
-  ];
+  
+  const [pageData, setPageData ] = useState(null);
 
-  const companyValues = [
-    {
-      title: "Experiencia Acumulada",
-      value: "60+ años",
-      description: "Entre todo el equipo",
-      icon: <Clock className="w-6 h-6" />
-    },
-    {
-      title: "Proyectos Completados",
-      value: "1,200+",
-      description: "En los últimos 5 años",
-      icon: <CheckCircle className="w-6 h-6" />
-    },
-    {
-      title: "Satisfacción Cliente",
-      value: "98%",
-      description: "Valoración media",
-      icon: <Star className="w-6 h-6" />
-    },
-    {
-      title: "Formación Continua",
-      value: "40h",
-      description: "Anuales por técnico",
-      icon: <GraduationCap className="w-6 h-6" />
-    }
-  ];
+  useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/pages/teampage`
+      );
 
-  const workingAreas = [
-    { area: "Sevilla Capital", coverage: "100%" },
-    { area: "Área Metropolitana", coverage: "95%" },
-    { area: "Provincia de Sevilla", coverage: "85%" },
-    { area: "Córdoba (zona sur)", coverage: "60%" },
-    { area: "Cádiz (zona norte)", coverage: "40%" }
-  ];
+      const data = await res.json();
+      setPageData(data);
+    } catch (error) {
+      console.error('Error cargando TeamPage:', error);
+    }
+  };
+
+  fetchData();
+}, []);
 
   return (
     <div className="min-h-screen">
@@ -162,14 +84,14 @@ export default function TeamPage({ onNavigate }) {
       <section className="py-24 bg-white border-b border-[#141516]/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-0 divide-y sm:divide-y-0 sm:divide-x divide-[#141516]/10 border border-[#141516]/10 bg-gray-50/50">
-            {companyValues.map((stat, index) => (
+            {pageData?.companyValues?.map((stat, index) => (
               <div key={index} className="group p-10 flex flex-col items-center text-center hover:bg-white transition-colors duration-500 relative">
                 {/* Top accent line on hover */}
                 <div className="absolute top-0 left-0 w-full h-0.5 bg-[#70a2ad] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
 
                 <div className="mb-6">
                   {/* Icon wrapper - no circle */}
-                  {React.cloneElement(stat.icon, { className: "w-8 h-8 text-[#141516] group-hover:text-[#70a2ad] stroke-[1] transition-colors duration-300" })}
+                  {stat.icon}
                 </div>
 
                 <div className="text-4xl md:text-5xl font-light text-[#141516] mb-3 font-[Urbanist] tracking-tight group-hover:-translate-y-1 transition-transform duration-500">
@@ -202,7 +124,7 @@ export default function TeamPage({ onNavigate }) {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-px bg-[#141516]/10 border border-[#141516]/10">
-            {teamMembers.map((member, index) => (
+            {pageData?.teamMembers?.map((member, index) => (
               <div key={index} className="bg-white p-8 md:p-10 group hover:bg-gray-50 transition-colors duration-300">
                 <div className="flex flex-col sm:flex-row gap-8">
                   {/* Avatar / Photo Area - Square & Technical */}
@@ -282,7 +204,7 @@ export default function TeamPage({ onNavigate }) {
               </div>
 
               <div className="space-y-8">
-                {workingAreas.map((area, index) => (
+                {pageData?.workingAreas?.map((area, index) => (
                   <div key={index} className="group">
                     <div className="flex items-end justify-between mb-2">
                       <div className="flex items-center gap-3">
