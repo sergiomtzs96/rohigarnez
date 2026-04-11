@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Projects = require('../models/Projects');
+const Projects = require('../models/InfoProjects');
 
 // GET for key
 
