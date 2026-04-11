@@ -1,4 +1,4 @@
-import { useState, useEffects } from 'react';
+import { useState, useEffect } from 'react';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { ImageWithFallback } from '../components/ImageWithFallback';
@@ -20,7 +20,6 @@ import {
   ArrowRight,
   LayoutTemplate
 } from 'lucide-react';
-import { set } from 'mongoose';
 
 
 
@@ -177,7 +176,7 @@ export function ProjectsPage({ onNavigate, user }) {
 
   const [pageData, setPageData] = useState(null);
 
-  useEffects(() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch(
@@ -275,7 +274,7 @@ export function ProjectsPage({ onNavigate, user }) {
       <section className="border-b border-[#141516]/5 bg-gray-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#141516]/10">
-            {stats.map((stat, index) => (
+            {pageData?.stats?.map((stat, index) => (
               <div key={index} className="py-8 text-center px-4 group hover:bg-white transition-colors">
                 <stat.icon className="h-6 w-6 text-[#141516] mx-auto mb-3 group-hover:text-[#70a2ad] transition-colors" />
                 <div className="text-2xl font-light text-[#141516] mb-1 font-[Urbanist]">{stat.value}</div>
@@ -290,7 +289,7 @@ export function ProjectsPage({ onNavigate, user }) {
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-px bg-[#141516]/10 border border-[#141516]/10 w-fit mx-auto">
-            {categories.map((category) => (
+            {pageData?.categories?.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
@@ -400,7 +399,7 @@ export function ProjectsPage({ onNavigate, user }) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {workProcess.map((step, i) => (
+            {pageData?.workProcess?.map((step, i) => (
               <div key={i} className="group relative">
                 <div className="absolute top-0 left-0 text-8xl font-light text-white/5 font-[Urbanist] -translate-y-8 select-none group-hover:text-[#70a2ad]/10 transition-colors">
                   {step.step}
