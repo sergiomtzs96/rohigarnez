@@ -195,6 +195,23 @@ export function HomePage({ onNavigate, user }) {
     },
   ];
 
+  const [pageData, setPageData] = useState(null);
+  const [testimonialsData, setTestimonialsData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch (`${import.meta.env.VITE_API_URL}/api/pages/homepage`);
+        const data = await res.json();
+        setPageData(data);
+      } catch (error) {
+        console.error("Error fetching page data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -268,7 +285,7 @@ export function HomePage({ onNavigate, user }) {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
-            {features.map((feature, index) => (
+            {pageData?.features?.map((feature, index) => (
               <div
                 key={index}
                 className="group"
@@ -314,7 +331,7 @@ export function HomePage({ onNavigate, user }) {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
-            {services.map((service, index) => (
+            {pageData?.services?.map((service, index) => (
               <div
                 key={index}
                 className="group cursor-pointer flex flex-col h-full"
@@ -374,7 +391,7 @@ export function HomePage({ onNavigate, user }) {
               </div>
               
               <div className="grid gap-10">
-                {benefits.map((benefit, index) => (
+                {pageData?.benefits?.map((benefit, index) => (
                   <div key={index} className="flex gap-6 group">
                     <div className="flex-shrink-0 pt-1">
                       <div className="w-12 h-12 flex items-center justify-center border border-[#141516]/10 bg-gray-50 text-[#141516] group-hover:border-[#70a2ad] group-hover:text-[#70a2ad] transition-all duration-300">
@@ -425,7 +442,7 @@ export function HomePage({ onNavigate, user }) {
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-[1px] bg-[#141516]/10 border border-[#141516]/10">
-            {stats.map((stat, index) => (
+            {pageData?.stats?.map((stat, index) => (
               <div key={index} className="bg-gray-50 p-8 md:p-12 flex flex-col items-center justify-center group hover:bg-white transition-all duration-300">
                 <div className="text-4xl md:text-5xl lg:text-6xl font-light text-[#141516] mb-3 font-[Urbanist] group-hover:text-[#70a2ad] transition-colors">
                   {stat.number}
@@ -471,7 +488,7 @@ export function HomePage({ onNavigate, user }) {
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
-                {locations.map((location, index) => (
+                {pageData?.locations?.map((location, index) => (
                   <div
                     key={index}
                     className="group border-l border-white/10 pl-6 hover:border-[#70a2ad] transition-all duration-300"
@@ -541,7 +558,7 @@ export function HomePage({ onNavigate, user }) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
-            {recentProjects.map((project) => (
+            {pageData?.recentProjects?.map((project) => (
               <div
                 key={project.id}
                 className="group block cursor-pointer"
@@ -601,7 +618,7 @@ export function HomePage({ onNavigate, user }) {
             <div className="w-px h-12 bg-[#141516] mx-auto opacity-20"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {testimonials.map((testimonial, index) => (
+            {pageData?.testimonials?.map((testimonial, index) => (
               <div key={index} className="relative group">
                 <div className="absolute top-0 left-0 w-full h-px bg-[#141516]/10 group-hover:bg-[#70a2ad] transition-colors duration-500"></div>
                 <div className="pt-8">

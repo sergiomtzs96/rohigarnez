@@ -15,11 +15,13 @@ const authRoutes = require('./routes/authRoutes');
 const pagesRoutes = require('./routes/pages');
 const servicesRoutes = require('./routes/services');
 const projectsRoutes = require('./routes/projects');
+const testimonialsRoutes = require('./routes/testimonialsHomePage');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/pages', pagesRoutes);
 app.use('/api/services', servicesRoutes);
 app.use('/api/projects', projectsRoutes);
+app.use('/api/testimonials', testimonialsRoutes);
 // Ruta prueba
 app.get('/', (req, res) => {
   res.send('API funcionando 🚀');

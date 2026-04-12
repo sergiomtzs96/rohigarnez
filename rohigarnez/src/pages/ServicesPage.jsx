@@ -22,8 +22,6 @@ export function ServicesPage({ onNavigate }) {
 
     const [pageData, setPageData] = useState(null);
 
-
-
     useEffect(() => {
         const fetchData = async () => {
             try {

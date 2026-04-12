@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { ImageWithFallback } from '../components/ImageWithFallback';
@@ -35,163 +35,48 @@ export function ProjectsPage({ onNavigate, user }) {
     { id: 'tech', label: 'Integración Técnica' }
   ];
 
-  const projects = [
-    {
-      id: '1',
-      title: 'Complejo Residencial Los Altos',
-      category: 'construction',
-      description: 'Ejecución integral de vaso de hormigón proyectado (gunitado) con revestimiento porcelánico técnico. Sistema de depuración salina de alto rendimiento y domótica integrada.',
-      client: 'Promotora Grupo García',
-      location: 'Sevilla, ES',
-      year: '2024',
-      duration: '45 días',
-      image: 'https://images.unsplash.com/photo-1577877319317-b5b6ac30f3ac?auto=format&fit=crop&q=80&w=1080',
-      highlights: ['Gunitado vía húmeda', 'Revestimiento Rosa Gres', 'Cloración Salina Zodiac', 'Iluminación DMX'],
-      specs: {
-        surface: '85 m²',
-        volume: '120 m³',
-        tech: 'Domótica iAquaLink'
-      }
-    },
-    {
-      id: '2',
-      title: 'Rehabilitación Hidráulica El Prado',
-      category: 'renovation',
-      description: 'Impermeabilización técnica mediante lámina armada termo-soldada in situ. Renovación completa del circuito hidráulico y bancada de filtración.',
-      client: 'C.P. El Prado',
-      location: 'Dos Hermanas, ES',
-      year: '2024',
-      duration: '30 días',
-      image: 'https://images.unsplash.com/photo-1656501379590-2655b905d2b1?auto=format&fit=crop&q=80&w=1080',
-      highlights: ['Lámina Armada Renolit', 'Filtración Vidrio Activo', 'Bombas Velocidad Variable', 'Panel de Control Digital'],
-      specs: {
-        surface: '120 m²',
-        volume: '180 m³',
-        tech: 'Filtración Biológica'
-      }
-    },
-    {
-      id: '3',
-      title: 'Gestión Integral Bellavista',
-      category: 'community',
-      description: 'Contrato de mantenimiento técnico preventivo y correctivo. Monitorización remota de parámetros fisicoquímicos las 24 horas.',
-      client: 'Urb. Bellavista',
-      location: 'Sevilla, ES',
-      year: '2023-24',
-      duration: 'Anual',
-      image: 'https://images.unsplash.com/photo-1593714604578-d9e41b00c6c6?auto=format&fit=crop&q=80&w=1080',
-      highlights: ['Telemetría 24/7', 'Equilibrado Químico', 'Auditoría Energética', 'Protocolo SIL'],
-      specs: {
-        surface: '200 m²',
-        volume: '350 m³',
-        tech: 'Sonda Redox/pH'
-      }
-    },
-    {
-      id: '4',
-      title: 'Optimización Energética Hotel Villa Magna',
-      category: 'tech',
-      description: 'Modernización de sala técnica para eficiencia energética. Instalación de variadores de frecuencia y bombas de calor inverter de alta capacidad.',
-      client: 'Hotel Villa Magna',
-      location: 'Mairena, ES',
-      year: '2024',
-      duration: '15 días',
-      image: 'https://images.unsplash.com/photo-1562778612-e1e0cda9915c?auto=format&fit=crop&q=80&w=1080',
-      highlights: ['Bombas Pentair VS', 'Intercambiador Titanio', 'Gestión BMS', 'Ahorro 40% kW/h'],
-      specs: {
-        surface: 'N/A',
-        volume: '90 m³',
-        tech: 'Pentair IntelliCenter'
-      }
-    },
-    {
-      id: '5',
-      title: 'Piscina Infinity Villa del Sol',
-      category: 'construction',
-      description: 'Diseño arquitectónico con desbordamiento perimetral tipo Infinity. Cálculo estructural para vaso suspendido y depósito de compensación.',
-      client: 'Particular',
-      location: 'Bormujos, ES',
-      year: '2023',
-      duration: '60 días',
-      image: 'https://images.unsplash.com/photo-1670589953903-b4e2f17a70a9?auto=format&fit=crop&q=80&w=1080',
-      highlights: ['Vaso Suspendido', 'Canal Desbordante', 'Depósito Compensación', 'Acabado Piedra Natural'],
-      specs: {
-        surface: '60 m²',
-        volume: '95 m³',
-        tech: 'Nivelación Láser'
-      }
-    },
-    {
-      id: '6',
-      title: 'Automatización Residencial Triana',
-      category: 'tech',
-      description: 'Implementación de sistema domótico integral para control de iluminación, climatización y cubierta automática desde dispositivo móvil.',
-      client: 'Familia Mendoza',
-      location: 'Triana, ES',
-      year: '2023',
-      duration: '10 días',
-      image: 'https://images.unsplash.com/photo-1584622050111-993a426fbf0a?auto=format&fit=crop&q=80&w=1080',
-      highlights: ['Control por Voz', 'Escenas Programables', 'Sensor Lluvia', 'Cubierta Motorizada'],
-      specs: {
-        surface: '40 m²',
-        volume: '65 m³',
-        tech: 'Home Assistant'
-      }
-    }
-  ];
-
-  const filteredProjects = selectedCategory === 'all'
-    ? projects
-    : projects.filter(project => project.category === selectedCategory);
-
-  const stats = [
-    { label: 'Proyectos Ejecutados', value: '250+', icon: Building },
-    { label: 'Años Trayectoria', value: '15', icon: Clock },
-    { label: 'Instalaciones Activas', value: '200+', icon: Target },
-    { label: 'Eficiencia Técnica', value: '98%', icon: CheckCircle }
-  ];
-
-  const workProcess = [
-    {
-      step: '01',
-      title: 'Consultoría Técnica',
-      description: 'Análisis de viabilidad, topografía y requisitos normativos.'
-    },
-    {
-      step: '02',
-      title: 'Ingeniería de Diseño',
-      description: 'Planos hidráulicos, eléctricos y renderizado 3D.'
-    },
-    {
-      step: '03',
-      title: 'Ejecución de Obra',
-      description: 'Construcción bajo estricto control de calidad y plazos.'
-    },
-    {
-      step: '04',
-      title: 'Puesta en Marcha',
-      description: 'Calibración de equipos y formación al usuario final.'
-    }
-  ];
-
-  const [pageData, setPageData] = useState(null);
+  const [infoData, setInfoData] = useState(null);
+  const [projectsData, setProjectsData] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProjects = async () => {
       try {
         const res = await fetch(
           `${import.meta.env.VITE_API_URL}/api/projects/projects`
         )
 
         const data = await res.json();
-        setPageData(data);
+        setProjectsData(data);
       } catch (error) {
         console.error('Error cargando ProjectsPage:', error);
       }
     };
 
-    fetchData();
+    fetchProjects();
   }, []);
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/projects/infoProjectsPage`
+        );
+        const data = await res.json();
+        setInfoData(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchInfo();
+  }, []);
+
+  const filteredProjects =
+    selectedCategory === 'all'
+      ? projectsData?.projects || []
+      : projectsData?.projects?.filter(project =>
+        project.category === selectedCategory
+      ) || [];
 
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-[#70a2ad]/20">
@@ -274,7 +159,7 @@ export function ProjectsPage({ onNavigate, user }) {
       <section className="border-b border-[#141516]/5 bg-gray-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#141516]/10">
-            {pageData?.stats?.map((stat, index) => (
+            {infoData?.stats?.map((stat, index) => (
               <div key={index} className="py-8 text-center px-4 group hover:bg-white transition-colors">
                 <stat.icon className="h-6 w-6 text-[#141516] mx-auto mb-3 group-hover:text-[#70a2ad] transition-colors" />
                 <div className="text-2xl font-light text-[#141516] mb-1 font-[Urbanist]">{stat.value}</div>
@@ -289,7 +174,7 @@ export function ProjectsPage({ onNavigate, user }) {
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-px bg-[#141516]/10 border border-[#141516]/10 w-fit mx-auto">
-            {pageData?.categories?.map((category) => (
+            {infoData?.categories?.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
@@ -333,7 +218,7 @@ export function ProjectsPage({ onNavigate, user }) {
                   <div>
                     <div className="flex justify-between items-start mb-6">
                       <div className="text-xs font-mono text-gray-400">{project.location} — {project.year}</div>
-                      <div className="text-xs font-mono text-[#70a2ad]">{project.id.padStart(2, '0')}</div>
+                      <div className="text-xs font-mono text-[#70a2ad]">{project.id}</div>
                     </div>
 
                     <h3 className="text-2xl font-light text-[#141516] mb-4 font-[Urbanist] leading-tight group-hover:text-[#70a2ad] transition-colors">
@@ -399,7 +284,7 @@ export function ProjectsPage({ onNavigate, user }) {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {pageData?.workProcess?.map((step, i) => (
+            {infoData?.workProcess?.map((step, i) => (
               <div key={i} className="group relative">
                 <div className="absolute top-0 left-0 text-8xl font-light text-white/5 font-[Urbanist] -translate-y-8 select-none group-hover:text-[#70a2ad]/10 transition-colors">
                   {step.step}
