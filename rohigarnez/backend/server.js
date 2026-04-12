@@ -21,7 +21,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/pages', pagesRoutes);
 app.use('/api/services', servicesRoutes);
 app.use('/api/projects', projectsRoutes);
-app.use('/api/testimonials-homepage', testimonialsHomepagesRoutes);
+app.use('/api/testimonials-homepage', testimonialsHomepageRoutes);
 // Ruta prueba
 app.get('/', (req, res) => {
   res.send('API funcionando 🚀');
