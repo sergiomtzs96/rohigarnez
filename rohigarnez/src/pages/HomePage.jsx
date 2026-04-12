@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Star,
   Shield,
@@ -211,6 +211,18 @@ export function HomePage({ onNavigate, user }) {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const res = await fetch (`${import.meta.env.VITE_API_URL}/api/testimonials-homepage/testimonials-homepage`);
+        const data = await res.json();
+        setTestimonialsData(data);
+      } catch (error) {
+        console.error("Error fetching testimonials data:", error);
+      }
+    }
+  })
 
   return (
     <div className="min-h-screen">
@@ -618,7 +630,7 @@ export function HomePage({ onNavigate, user }) {
             <div className="w-px h-12 bg-[#141516] mx-auto opacity-20"></div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {pageData?.testimonials?.map((testimonial, index) => (
+            {testimonialsData?.testimonials?.map((testimonial, index) => (
               <div key={index} className="relative group">
                 <div className="absolute top-0 left-0 w-full h-px bg-[#141516]/10 group-hover:bg-[#70a2ad] transition-colors duration-500"></div>
                 <div className="pt-8">
