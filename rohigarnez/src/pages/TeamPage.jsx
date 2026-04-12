@@ -131,66 +131,68 @@ export default function TeamPage({ onNavigate }) {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-px bg-[#141516]/10 border border-[#141516]/10">
-            {pageData?.teamMembers?.map((member, index) => (
-              <div key={index} className="bg-white p-8 md:p-10 group hover:bg-gray-50 transition-colors duration-300">
-                <div className="flex flex-col sm:flex-row gap-8">
-                  {/* Avatar / Photo Area - Square & Technical */}
-                  <div className="w-full sm:w-32 h-32 flex-shrink-0 bg-gray-100 relative overflow-hidden group-hover:ring-1 ring-[#70a2ad]/50 transition-all">
-                    <div className="absolute inset-0 flex items-center justify-center bg-[#141516]/5 text-[#141516]/20">
-                      <User className="w-12 h-12 stroke-[1]" />
-                    </div>
-                    {/* Decorative corner accent */}
-                    <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#70a2ad] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-
-                  {/* Info Area */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
-                      <h3 className="text-xl font-medium text-[#141516] font-[Urbanist]">
-                        {member.name}
-                      </h3>
-                      <span className="text-xs font-mono text-[#70a2ad] border border-[#70a2ad]/20 px-2 py-0.5 uppercase tracking-wide">
-                        EXP. {member.experience}
-                      </span>
+            {pageData?.teamMembers?.map((member, index) => {
+              return (
+                <div key={index} className="bg-white p-8 md:p-10 group hover:bg-gray-50 transition-colors duration-300">
+                  <div className="flex flex-col sm:flex-row gap-8">
+                    {/* Avatar / Photo Area - Square & Technical */}
+                    <div className="w-full sm:w-32 h-32 flex-shrink-0 bg-gray-100 relative overflow-hidden group-hover:ring-1 ring-[#70a2ad]/50 transition-all">
+                      <div className="absolute inset-0 flex items-center justify-center bg-[#141516]/5 text-[#141516]/20">
+                        <User className="w-12 h-12 stroke-[1]" />
+                      </div>
+                      {/* Decorative corner accent */}
+                      <div className="absolute bottom-0 right-0 w-3 h-3 bg-[#70a2ad] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
 
-                    <p className="text-sm text-[#70a2ad] font-medium uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">
-                      {member.role}
-                    </p>
-
-                    <p className="text-gray-500 text-sm font-light leading-relaxed mb-6 line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
-                      {member.bio}
-                    </p>
-
-                    <div className="space-y-4">
-                      {/* Technical Specs List */}
-                      <div>
-                        <p className="text-[10px] uppercase text-gray-400 font-bold tracking-widest mb-2">Especialidades</p>
-                        <div className="flex flex-wrap gap-2">
-                          {member.specialties.slice(0, 3).map((specialty, i) => (
-                            <span key={i} className="text-xs text-gray-600 bg-gray-50 px-2 py-1 border border-gray-200">
-                              {specialty}
-                            </span>
-                          ))}
-                        </div>
+                    {/* Info Area */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+                        <h3 className="text-xl font-medium text-[#141516] font-[Urbanist]">
+                          {member.name}
+                        </h3>
+                        <span className="text-xs font-mono text-[#70a2ad] border border-[#70a2ad]/20 px-2 py-0.5 uppercase tracking-wide">
+                          EXP. {member.experience}
+                        </span>
                       </div>
 
-                      {/* Contact Line */}
-                      <div className="flex items-center gap-6 pt-4 border-t border-gray-50 opacity-60 group-hover:opacity-100 transition-opacity">
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
-                          <Phone className="w-3 h-3" />
-                          <span className="font-mono">{member.contact.phone}</span>
+                      <p className="text-sm text-[#70a2ad] font-medium uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">
+                        {member.role}
+                      </p>
+
+                      <p className="text-gray-500 text-sm font-light leading-relaxed mb-6 line-clamp-2 group-hover:line-clamp-none transition-all duration-300 ease-in-out">
+                        {member.bio}
+                      </p>
+
+                      <div className="space-y-4">
+                        {/* Technical Specs List */}
+                        <div>
+                          <p className="text-[10px] uppercase text-gray-400 font-bold tracking-widest mb-2">Especialidades</p>
+                          <div className="flex flex-wrap gap-2">
+                            {member.specialties.slice(0, 3).map((specialty, i) => (
+                              <span key={i} className="text-xs text-gray-600 bg-gray-50 px-2 py-1 border border-gray-200">
+                                {specialty}
+                              </span>
+                            ))}
+                          </div>
                         </div>
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
-                          <Mail className="w-3 h-3" />
-                          <span>{member.contact.email}</span>
+
+                        {/* Contact Line */}
+                        <div className="flex items-center gap-6 pt-4 border-t border-gray-50 opacity-60 group-hover:opacity-100 transition-opacity">
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <Phone className="w-3 h-3" />
+                            <span className="font-mono">{member.contact.phone}</span>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <Mail className="w-3 h-3" />
+                            <span>{member.contact.email}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -211,24 +213,26 @@ export default function TeamPage({ onNavigate }) {
               </div>
 
               <div className="space-y-8">
-                {pageData?.workingAreas?.map((area, index) => (
-                  <div key={index} className="group">
-                    <div className="flex items-end justify-between mb-2">
-                      <div className="flex items-center gap-3">
-                        <MapPin className="w-4 h-4 text-[#141516] stroke-[1.5]" />
-                        <span className="font-medium text-[#141516] tracking-wide text-sm uppercase">{area.area}</span>
+                {pageData?.workingAreas?.map((area, index) => {
+                  return (
+                    <div key={index} className="group">
+                      <div className="flex items-end justify-between mb-2">
+                        <div className="flex items-center gap-3">
+                          <MapPin className="w-4 h-4 text-[#141516] stroke-[1.5]" />
+                          <span className="font-medium text-[#141516] tracking-wide text-sm uppercase">{area.area}</span>
+                        </div>
+                        <span className="text-xs font-mono text-[#70a2ad] font-bold">{area.coverage}</span>
                       </div>
-                      <span className="text-xs font-mono text-[#70a2ad] font-bold">{area.coverage}</span>
+                      {/* Architectural Progress Bar */}
+                      <div className="w-full h-px bg-[#141516]/10 relative">
+                        <div
+                          className="absolute top-0 left-0 h-full bg-[#70a2ad] transition-all duration-1000 ease-out group-hover:h-0.5 group-hover:-top-[1px]"
+                          style={{ width: area.coverage }}
+                        />
+                      </div>
                     </div>
-                    {/* Architectural Progress Bar */}
-                    <div className="w-full h-px bg-[#141516]/10 relative">
-                      <div
-                        className="absolute top-0 left-0 h-full bg-[#70a2ad] transition-all duration-1000 ease-out group-hover:h-0.5 group-hover:-top-[1px]"
-                        style={{ width: area.coverage }}
-                      />
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 

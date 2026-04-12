@@ -1,26 +1,12 @@
-import {
-    Droplets,
-    Search,
-    Wrench,
-    Hammer,
-    Settings,
-    Package,
-    Users,
-    ShieldCheck,
-    ArrowRight,
-    CheckCircle,
-    Phone,
-    LayoutGrid
-} from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import { Badge } from '../components/ui/badge';
 import { useState, useEffect } from 'react';
 
 
 
 export function ServicesPage({ onNavigate }) {
 
-    const [pageData, setPageData] = useState(null);
+    const [serviceData, setServiceData] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,7 +16,10 @@ export function ServicesPage({ onNavigate }) {
                 );
 
                 const data = await res.json();
-                setPageData(data);
+
+                console.log("DATA : ", data);
+
+                setServiceData(data);
             } catch (error) {
                 console.error(error);
             }
@@ -39,8 +28,7 @@ export function ServicesPage({ onNavigate }) {
         fetchData();
     }, []);
 
-    const serviceCategories = pageData?.servicesCategories || [];
-
+    const serviceCategories = serviceData?.content?.servicesCategories || [];
     return (
         <main className="min-h-screen bg-white">
             {/* Hero Section */}
@@ -135,24 +123,26 @@ export function ServicesPage({ onNavigate }) {
 
                                 {/* Services Grid - Architectural Table */}
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 border-t border-l border-[#141516]/10">
-                                    {category.services.map((service) => (
-                                        <div
-                                            key={service.id}
-                                            onClick={() => onNavigate(service.page)}
-                                            className="group cursor-pointer border-r border-b border-[#141516]/10 p-8 hover:bg-gray-50 transition-colors relative"
-                                        >
-                                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                <ArrowRight className="w-5 h-5 text-[#70a2ad] -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-                                            </div>
+                                    {(category.services || []).map((service) => {
+                                            return (
+                                                <div
+                                                    key={service.id}
+                                                    onClick={() => onNavigate(service.page)}
+                                                    className="group cursor-pointer border-r border-b border-[#141516]/10 p-8 hover:bg-gray-50 transition-colors relative"
+                                                >
+                                                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                        <ArrowRight className="w-5 h-5 text-[#70a2ad] -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                                                    </div>
 
-                                            <h4 className="text-xl font-medium text-[#141516] font-[Urbanist] mb-3 pr-6">
-                                                {service.name}
-                                            </h4>
-                                            <p className="text-gray-500 text-sm font-light leading-relaxed">
-                                                {service.description}
-                                            </p>
-                                        </div>
-                                    ))}
+                                                    <h4 className="text-xl font-medium text-[#141516] font-[Urbanist] mb-3 pr-6">
+                                                        {service.name}
+                                                    </h4>
+                                                    <p className="text-gray-500 text-sm font-light leading-relaxed">
+                                                        {service.description}
+                                                    </p>
+                                                </div>
+                                            );
+                                        })}
                                 </div>
                             </div>
                         ))}

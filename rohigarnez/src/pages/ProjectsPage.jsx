@@ -3,21 +3,10 @@ import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { ImageWithFallback } from '../components/ImageWithFallback';
 import {
-  Filter,
-  Calendar,
-  MapPin,
-  User,
-  Award,
-  ChevronRight,
-  Star,
-  Quote,
-  Eye,
   CheckCircle,
   Clock,
   Target,
-  Users,
   Building,
-  ArrowRight,
   LayoutTemplate
 } from 'lucide-react';
 
@@ -25,6 +14,14 @@ import {
 
 
 export function ProjectsPage({ onNavigate, user }) {
+
+  const iconMap = {
+    Building,
+    Clock,
+    Target,
+    CheckCircle
+  }
+
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const categories = [
@@ -39,36 +36,24 @@ export function ProjectsPage({ onNavigate, user }) {
   const [projectsData, setProjectsData] = useState(null);
 
   useEffect(() => {
-    const fetchProjects = async () => {
+    const fetchAll = async () => {
       try {
-        const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/projects/projects`
-        )
+        const [projectsRes, infoRes] = await Promise.all([
+          fetch(`${import.meta.env.VITE_API_URL}/api/projects/projects`),
+          fetch(`${import.meta.env.VITE_API_URL}/api/projects/infoProjectsPage`)
+        ]);
 
-        const data = await res.json();
-        setProjectsData(data);
+        const projectsData = await projectsRes.json();
+        const infoData = await infoRes.json();
+
+        setProjectsData(projectsData);
+        setInfoData(infoData);
       } catch (error) {
-        console.error('Error cargando ProjectsPage:', error);
+        console.error(error);
       }
     };
 
-    fetchProjects();
-  }, []);
-
-  useEffect(() => {
-    const fetchInfo = async () => {
-      try {
-        const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/projects/infoProjectsPage`
-        );
-        const data = await res.json();
-        setInfoData(data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    fetchInfo();
+    fetchAll();
   }, []);
 
   const filteredProjects =

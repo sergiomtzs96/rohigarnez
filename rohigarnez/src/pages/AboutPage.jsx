@@ -1,96 +1,39 @@
-import React from 'react';
-import { Shield, Heart, Lightbulb, Users, Award, Clock, CheckCircle, Target } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Shield, Heart, Lightbulb, Users, Award, Clock, Target } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import { Card, CardContent } from '../components/ui/card';
 import { ImageWithFallback } from '../components/ImageWithFallback';
 
 
 
 export function AboutPage({ onNavigate }) {
-    const values = [
-        {
-            icon: Shield,
-            title: "Calidad y Confianza",
-            description: "Ofrecemos servicios de la más alta calidad con total transparencia y honestidad en cada proyecto."
-        },
-        {
-            icon: Heart,
-            title: "Compromiso",
-            description: "Nos comprometemos al 100% con la satisfacción de nuestros clientes y el cuidado del medio ambiente."
-        },
-        {
-            icon: Lightbulb,
-            title: "Innovación",
-            description: "Incorporamos las últimas tecnologías y técnicas más avanzadas en el mantenimiento de piscinas."
-        },
-        {
-            icon: Users,
-            title: "Trabajo en Equipo",
-            description: "Nuestro equipo multidisciplinar trabaja coordinadamente para ofrecer el mejor servicio posible."
-        }
-    ];
 
-    const milestones = [
-        {
-            year: "2009",
-            title: "Fundación de Rogigarnez S.L.",
-            description: "Iniciamos nuestra actividad en Madrid con un equipo de 3 técnicos especializados."
-        },
-        {
-            year: "2012",
-            title: "Expansión Nacional",
-            description: "Ampliamos nuestros servicios a Barcelona, Valencia y otras ciudades principales."
-        },
-        {
-            year: "2016",
-            title: "Certificación ISO",
-            description: "Obtenemos la certificación ISO 9001 en calidad y ISO 14001 en gestión ambiental."
-        },
-        {
-            year: "2020",
-            title: "Tecnología Verde",
-            description: "Incorporamos productos 100% ecológicos y sistemas de eficiencia energética."
-        },
-        {
-            year: "2024",
-            title: "Liderazgo del Sector",
-            description: "Nos consolidamos como empresa líder con más de 500 piscinas bajo mantenimiento."
-        }
-    ];
+    const iconMap = {
+        Shield,
+        Heart,
+        Lightbulb,
+        Users,
+        Award,
+        Clock
+    }
+    
+    const [aboutData, setAboutData] = useState(null);
 
-    const achievements = [
-        {
-            icon: Award,
-            title: "15+ Años de Experiencia",
-            description: "Más de una década perfeccionando nuestros servicios"
-        },
-        {
-            icon: Users,
-            title: "500+ Clientes Satisfechos",
-            description: "Cientos de familias y comunidades confían en nosotros"
-        },
-        {
-            icon: Shield,
-            title: "Técnicos Certificados",
-            description: "Todo nuestro personal cuenta con certificaciones oficiales"
-        },
-        {
-            icon: Clock,
-            title: "Servicio 24/7",
-            description: "Atención de emergencias los 365 días del año"
-        }
-    ];
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch(
+                    `${import.meta.env.VITE_API_URL}/api/info/aboutpage`
+                );
 
-    const whyChooseUs = [
-        "Más de 15 años de experiencia en el sector",
-        "Técnicos altamente cualificados y certificados",
-        "Productos eco-friendly y respetuosos con el medio ambiente",
-        "Precios competitivos sin comprometer la calidad",
-        "Servicio de emergencias 24/7 los 365 días del año",
-        "Garantía total en todos nuestros trabajos",
-        "Cobertura en las principales ciudades de España",
-        "Planes de mantenimiento personalizados"
-    ];
+                const data = await res.json();
+                setAboutData(data);
+            } catch (error) {
+                console.error('Error cargando AboutPage:', error);
+            }
+        }
+        fetchData();
+    }, []);
+
 
     return (
         <div className="min-h-screen">
@@ -211,21 +154,24 @@ export function AboutPage({ onNavigate }) {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-[#141516]/10 border border-[#141516]/10">
-                        {values.map((value, index) => (
-                            <div key={index} className="bg-gray-50 p-10 group hover:bg-white transition-all duration-300 relative overflow-hidden">
-                                <div className="mb-8 relative">
-                                    <value.icon className="w-10 h-10 text-[#141516] group-hover:text-[#70a2ad] transition-colors duration-300 stroke-[1]" />
+                        {aboutData?.values?.map((value, index) => {
+                            const Icon = iconMap[value.icon?.trim()];
+                            return (
+                                <div key={index} className="bg-gray-50 p-10 group hover:bg-white transition-all duration-300 relative overflow-hidden">
+                                    <div className="mb-8 relative">
+                                        {Icon && <Icon className="w-10 h-10 text-[#141516] group-hover:text-[#70a2ad] transition-colors duration-300 stroke-[1]" />}
+                                    </div>
+                                    <h3 className="text-sm font-bold text-[#141516] mb-4 font-[Urbanist] uppercase tracking-[0.2em] group-hover:translate-x-1 transition-transform duration-300">
+                                        {value.title}
+                                    </h3>
+                                    <p className="text-sm text-gray-500 font-light leading-relaxed group-hover:text-gray-800 transition-colors">
+                                        {value.description}
+                                    </p>
+                                    {/* Decorative corner */}
+                                    <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-[#70a2ad] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 </div>
-                                <h3 className="text-sm font-bold text-[#141516] mb-4 font-[Urbanist] uppercase tracking-[0.2em] group-hover:translate-x-1 transition-transform duration-300">
-                                    {value.title}
-                                </h3>
-                                <p className="text-sm text-gray-500 font-light leading-relaxed group-hover:text-gray-800 transition-colors">
-                                    {value.description}
-                                </p>
-                                {/* Decorative corner */}
-                                <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-[#70a2ad] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -247,32 +193,34 @@ export function AboutPage({ onNavigate }) {
                         <div className="absolute left-1/2 transform -translate-x-px w-px h-full bg-[#141516]/10"></div>
 
                         <div className="space-y-20">
-                            {milestones.map((milestone, index) => (
-                                <div key={index} className={`relative flex items-center justify-between gap-12 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                                    {/* Content Side */}
-                                    <div className={`w-1/2 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                                        <div className="group cursor-default">
-                                            <div className="mb-2">
-                                                <span className="text-5xl md:text-6xl font-light text-[#141516]/10 font-[Urbanist] group-hover:text-[#70a2ad] transition-colors duration-500">
-                                                    {milestone.year}
-                                                </span>
+                            {aboutData?.milestones?.map((milestone, index) => {
+                                return (
+                                    <div key={index} className={`relative flex items-center justify-between gap-12 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
+                                        {/* Content Side */}
+                                        <div className={`w-1/2 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
+                                            <div className="group cursor-default">
+                                                <div className="mb-2">
+                                                    <span className="text-5xl md:text-6xl font-light text-[#141516]/10 font-[Urbanist] group-hover:text-[#70a2ad] transition-colors duration-500">
+                                                        {milestone.year}
+                                                    </span>
+                                                </div>
+                                                <h3 className="text-sm font-bold text-[#141516] uppercase tracking-[0.2em] mb-3">
+                                                    {milestone.title}
+                                                </h3>
+                                                <p className="text-gray-500 font-light leading-relaxed">
+                                                    {milestone.description}
+                                                </p>
                                             </div>
-                                            <h3 className="text-sm font-bold text-[#141516] uppercase tracking-[0.2em] mb-3">
-                                                {milestone.title}
-                                            </h3>
-                                            <p className="text-gray-500 font-light leading-relaxed">
-                                                {milestone.description}
-                                            </p>
                                         </div>
+
+                                        {/* Axis Marker */}
+                                        <div className="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white border border-[#70a2ad] rotate-45 z-10"></div>
+
+                                        {/* Empty Side */}
+                                        <div className="w-1/2"></div>
                                     </div>
-
-                                    {/* Axis Marker */}
-                                    <div className="absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white border border-[#70a2ad] rotate-45 z-10"></div>
-
-                                    {/* Empty Side */}
-                                    <div className="w-1/2"></div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </div>
@@ -298,19 +246,22 @@ export function AboutPage({ onNavigate }) {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-b border-white/10 divide-y md:divide-y-0 md:divide-x divide-white/10">
-                        {achievements.map((achievement, index) => (
-                            <div key={index} className="group py-12 px-6 flex flex-col items-center text-center hover:bg-white/[0.02] transition-colors duration-500">
-                                <div className="mb-6 relative">
-                                    <achievement.icon className="w-10 h-10 text-[#70a2ad] stroke-[1] opacity-80 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-500" />
+                        {aboutData?.achievements?.map((achievement, index) => {
+                            const Icon = iconMap[achievement.icon];
+                            return (
+                                <div key={index} className="group py-12 px-6 flex flex-col items-center text-center hover:bg-white/[0.02] transition-colors duration-500">
+                                    <div className="mb-6 relative">
+                                        {Icon && <Icon className="w-10 h-10 text-[#70a2ad] stroke-[1] opacity-80 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-500" />}
+                                    </div>
+                                    <h3 className="text-3xl font-light text-white mb-3 font-[Urbanist] tracking-tight">
+                                        {achievement.title}
+                                    </h3>
+                                    <p className="text-xs text-gray-500 uppercase tracking-[0.2em] font-medium leading-relaxed">
+                                        {achievement.description}
+                                    </p>
                                 </div>
-                                <h3 className="text-3xl font-light text-white mb-3 font-[Urbanist] tracking-tight">
-                                    {achievement.title}
-                                </h3>
-                                <p className="text-xs text-gray-500 uppercase tracking-[0.2em] font-medium leading-relaxed">
-                                    {achievement.description}
-                                </p>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>
@@ -341,14 +292,16 @@ export function AboutPage({ onNavigate }) {
                             </div>
 
                             <div className="grid gap-0">
-                                {whyChooseUs.map((reason, index) => (
-                                    <div key={index} className="flex items-center py-5 border-b border-[#141516]/5 group hover:pl-2 transition-all duration-300 cursor-default">
-                                        <div className="w-1.5 h-1.5 bg-[#141516]/20 mr-4 group-hover:bg-[#70a2ad] transition-colors duration-300 rotate-45"></div>
-                                        <span className="text-gray-600 font-light group-hover:text-[#141516] transition-colors duration-300">
-                                            {reason}
-                                        </span>
-                                    </div>
-                                ))}
+                                {aboutData?.whyChooseUs?.map((reason, index) => {
+                                    return (
+                                        <div key={index} className="flex items-center py-5 border-b border-[#141516]/5 group hover:pl-2 transition-all duration-300 cursor-default">
+                                            <div className="w-1.5 h-1.5 bg-[#141516]/20 mr-4 group-hover:bg-[#70a2ad] transition-colors duration-300 rotate-45"></div>
+                                            <span className="text-gray-600 font-light group-hover:text-[#141516] transition-colors duration-300">
+                                                {reason}
+                                            </span>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
