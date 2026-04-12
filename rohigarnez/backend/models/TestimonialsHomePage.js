@@ -1,30 +1,20 @@
 const mongoose = require('mongoose');
 
-const TestimonialsHomePageSchema = new mongoose.Schema(
-  {
-    key: {
-      type: String,
-      required: true,
-      unique: true
-    },
-
-    title: String,
-
-    testimonials: [
-      {
-        name: String,
-        location: String,
-        rating: Number,
-        comment: String
-      }
-    ]
-  },
-  {
-    timestamps: true
-  }
-);
+const TestimonialsHomepageSchema = new mongoose.Schema({
+  key: String,
+  title: String,
+  testimonials: [
+    {
+      name: String,
+      location: String,
+      rating: Number,
+      comment: String
+    }
+  ]
+});
 
 module.exports = mongoose.model(
-  'TestimonialsHomePage',
-  TestimonialsHomePageSchema
+  'TestimonialsHomepage',
+  TestimonialsHomepageSchema,
+  'testimonials'
 );
