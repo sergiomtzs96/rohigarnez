@@ -33,7 +33,7 @@ export default function TeamPage({ onNavigate }) {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/pages/teampage`
+          `${import.meta.env.VITE_API_URL}/api/info/teampage`
         );
 
         const data = await res.json();

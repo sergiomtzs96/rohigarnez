@@ -17,16 +17,16 @@ app.use(express.json());
    ROUTES
 ======================== */
 const authRoutes = require('./routes/authRoutes');
-const pagesRoutes = require('./routes/pages');
 const servicesRoutes = require('./routes/services');
 const projectsRoutes = require('./routes/projects');
 const testimonialsHomepageRoutes = require('./routes/testimonialsHomePage');
+const infoRoutes = require('./routes/info');
 
 /* ========================
    API ROUTES
 ======================== */
 app.use('/api/auth', authRoutes);
-app.use('/api/pages', pagesRoutes);
+app.use('/api/info', infoRoutes);
 app.use('/api/services', servicesRoutes);
 app.use('/api/projects', projectsRoutes);
 app.use('/api/testimonials-homepage', testimonialsHomepageRoutes);

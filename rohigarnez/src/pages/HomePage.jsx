@@ -201,7 +201,7 @@ export function HomePage({ onNavigate, user }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch (`${import.meta.env.VITE_API_URL}/api/pages/homepage`);
+        const res = await fetch (`${import.meta.env.VITE_API_URL}/api/info/homepage`);
         const data = await res.json();
         setPageData(data);
       } catch (error) {
