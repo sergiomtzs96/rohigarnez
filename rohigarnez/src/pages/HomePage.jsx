@@ -215,7 +215,7 @@ export function HomePage({ onNavigate, user }) {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const res = await fetch (`${import.meta.env.VITE_API_URL}/api/testimonials-homepage/testimonials-homepage`);
+        const res = await fetch (`${import.meta.env.VITE_API_URL}/api/testimonials/testimonials-homepage`);
         const data = await res.json();
         setTestimonialsData(data);
       } catch (error) {

@@ -17,20 +17,20 @@ app.use(express.json());
    ROUTES
 ======================== */
 const authRoutes = require('./routes/authRoutes');
-const servicesRoutes = require('./routes/services');
-const projectsRoutes = require('./routes/projects');
-const testimonialsHomepageRoutes = require('./routes/testimonialsHomePage');
 const infoRoutes = require('./routes/info');
+const projectsRoutes = require('./routes/projects');
+const servicesRoutes = require('./routes/services');
+const testimonialsRoutes = require('./routes/testimonials');
 
 /* ========================
    API ROUTES
 ======================== */
 app.use('/api/auth', authRoutes);
-app.use('/api/info', infoRoutes);
-app.use('/api/services', servicesRoutes);
-app.use('/api/projects', projectsRoutes);
-app.use('/api/testimonials-homepage', testimonialsHomepageRoutes);
-
+app.use('/api/info', infoRoutes); //  /api/info/homepage || aboutpage || teampage || contactpage || brandspage
+app.use('/api/projects', projectsRoutes); //   /api/projects/infoProjectsPage || projects
+app.use('/api/services', servicesRoutes); //   /api/services/poolrehabilitationpage || saltchlorinatorpage || ...
+app.use('/api/testimonials', testimonialsRoutes); //   /api/testimonials/testimonials-homepage
+ 
 /* ========================
    HEALTH CHECK
 ======================== */

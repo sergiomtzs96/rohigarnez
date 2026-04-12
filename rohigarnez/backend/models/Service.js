@@ -1,10 +1,21 @@
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
 
-const serviceSchema = new mongoose.Schema({
-    key: String,
-    hero: Object,
-    stats: Array,
-    serviceCategory: Array
-});
+const ServiceSchema = new mongoose.Schema(
+  {
+    key: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    title: String,
 
-module.exports = mongoose.model('Service', serviceSchema);
+    // 🔥 TODO el contenido dinámico
+    content: mongoose.Schema.Types.Mixed
+  },
+  {
+    timestamps: true
+  }
+);
+
+// 👇 importante: nombre real de la colección
+module.exports = mongoose.model('Service', ServiceSchema, 'services');

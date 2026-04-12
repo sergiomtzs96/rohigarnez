@@ -2,21 +2,22 @@ const express = require('express');
 const router = express.Router();
 const Service = require('../models/Service');
 
-
-// GET por key
+// 🔥 GET por key (dinámico para TODAS las páginas)
 router.get('/:key', async (req, res) => {
-    try {
-        const page = await Service.findOne({ key: req.params.key });
+  try {
+    const service = await Service.findOne({ key: req.params.key });
 
-        if (!page) {
-            return res.status(404).json({ message: 'Página no encontrada' });
-        }
-
-        res.json(page);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error en servidor' });
+    if (!service) {
+      return res.status(404).json({ message: 'Servicio no encontrado' });
     }
+
+    res.json(service);
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error al obtener servicio',
+      error: error.message
+    });
+  }
 });
 
 module.exports = router;
