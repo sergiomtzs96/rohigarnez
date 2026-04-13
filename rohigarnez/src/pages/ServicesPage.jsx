@@ -124,25 +124,28 @@ export function ServicesPage({ onNavigate }) {
                                 {/* Services Grid - Architectural Table */}
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 border-t border-l border-[#141516]/10">
                                     {(category.services || []).map((service) => {
-                                            return (
-                                                <div
-                                                    key={service.id}
-                                                    onClick={() => onNavigate(service.page)}
-                                                    className="group cursor-pointer border-r border-b border-[#141516]/10 p-8 hover:bg-gray-50 transition-colors relative"
-                                                >
-                                                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                        <ArrowRight className="w-5 h-5 text-[#70a2ad] -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-                                                    </div>
-
-                                                    <h4 className="text-xl font-medium text-[#141516] font-[Urbanist] mb-3 pr-6">
-                                                        {service.name}
-                                                    </h4>
-                                                    <p className="text-gray-500 text-sm font-light leading-relaxed">
-                                                        {service.description}
-                                                    </p>
+                                        return (
+                                            <div
+                                                key={service.id}
+                                                onClick={() => {
+                                                    console.log('Navegando a: ', service.page);
+                                                    onNavigate(service.page)
+                                                }}
+                                                className="group cursor-pointer border-r border-b border-[#141516]/10 p-8 hover:bg-gray-50 transition-colors relative"
+                                            >
+                                                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    <ArrowRight className="w-5 h-5 text-[#70a2ad] -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
                                                 </div>
-                                            );
-                                        })}
+
+                                                <h4 className="text-xl font-medium text-[#141516] font-[Urbanist] mb-3 pr-6">
+                                                    {service.name}
+                                                </h4>
+                                                <p className="text-gray-500 text-sm font-light leading-relaxed">
+                                                    {service.description}
+                                                </p>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         ))}

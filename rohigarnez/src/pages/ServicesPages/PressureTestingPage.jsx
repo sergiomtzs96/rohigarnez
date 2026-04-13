@@ -1,66 +1,26 @@
-import React from 'react';
-import { Search, AlertTriangle, CheckCircle, Clock, Target, Gauge, ArrowRight, Settings, Activity } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { AlertTriangle, ArrowRight, Activity } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 
 
-export function PressureTestingPage({ onNavigate }) {
-  const services = [
-    {
-      title: 'Localización de Fugas',
-      description: 'Detección precisa de fugas en tuberías y estructura',
-      duration: '2-4 horas',
-      price: 'Desde 150€',
-      equipment: 'Equipos de escucha electrónica',
-      accuracy: '95%+'
-    },
-    {
-      title: 'Pruebas de Presión',
-      description: 'Verificación de estanqueidad del circuito hidráulico',
-      duration: '1-2 horas',
-      price: 'Desde 120€',
-      equipment: 'Manómetros digitales',
-      accuracy: '98%+'
-    },
-    {
-      title: 'Inspección con Cámara',
-      description: 'Revisión visual interior de tuberías',
-      duration: '1-3 horas',
-      price: 'Desde 200€',
-      equipment: 'Cámara de inspección',
-      accuracy: '100%'
-    }
-  ];
+export default function PressureTestingPage({ onNavigate }) {
 
-  const problems = [
-    {
-      symptom: 'Pérdida constante de agua',
-      causes: ['Fisuras en estructura', 'Juntas deterioradas', 'Tuberías dañadas'],
-      detection: 'Prueba de presión + localización'
-    },
-    {
-      symptom: 'Humedad en alrededores',
-      causes: ['Fugas subterráneas', 'Filtraciones laterales', 'Drenaje deficiente'],
-      detection: 'Detección electrónica + cámara'
-    },
-    {
-      symptom: 'Baja presión en jets',
-      causes: ['Obstrucciones', 'Fugas en retorno', 'Bomba defectuosa'],
-      detection: 'Inspección con cámara'
-    },
-    {
-      symptom: 'Químicos descompensados',
-      causes: ['Dilución por fuga', 'Renovación excesiva', 'Entrada de agua'],
-      detection: 'Localización + análisis'
-    }
-  ];
+  const [pressureData, setPressureData] = useState(null);
 
-  const process = [
-    { step: '01', title: 'Evaluación', desc: 'Análisis visual inicial' },
-    { step: '02', title: 'Preparación', desc: 'Vaciado parcial y sellado' },
-    { step: '03', title: 'Detección', desc: 'Aplicación de pruebas' },
-    { step: '04', title: 'Localización', desc: 'Marcado exacto' },
-    { step: '05', title: 'Informe', desc: 'Reporte técnico completo' }
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/services/pressuretestingpage`
+        )
+        const data = await res.json();
+        setPressureData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <main className="min-h-screen bg-white">
@@ -124,7 +84,7 @@ export function PressureTestingPage({ onNavigate }) {
            </div>
 
            <div className="grid grid-cols-1 lg:grid-cols-3 border-l border-[#141516]/10">
-              {services.map((service, index) => (
+              {pressureData?.content?.services?.map((service, index) => (
                 <div key={index} className="group p-10 border-r border-t border-b border-[#141516]/10 hover:bg-gray-50 transition-colors relative">
                    <div className="mb-8">
                       <h3 className="text-xl font-medium text-[#141516] font-[Urbanist] mb-2">{service.title}</h3>
@@ -176,7 +136,7 @@ export function PressureTestingPage({ onNavigate }) {
                  </div>
 
                  <div className="space-y-0 border border-[#141516]/10 bg-white">
-                    {problems.map((problem, i) => (
+                    {pressureData?.content?.problems?.map((problem, i) => (
                        <div key={i} className="flex flex-col md:flex-row gap-6 p-8 border-b last:border-0 border-[#141516]/10 hover:bg-gray-50 transition-colors group">
                           <div className="flex-1">
                              <div className="flex items-center gap-3 mb-2">
@@ -204,7 +164,7 @@ export function PressureTestingPage({ onNavigate }) {
                     <h3 className="text-2xl font-light text-white font-[Urbanist] mb-8 relative z-10">Proceso Sistemático</h3>
                     
                     <div className="space-y-8 relative z-10">
-                       {process.map((step, i) => (
+                       {pressureData?.content?.process?.map((step, i) => (
                           <div key={i} className="flex items-start gap-4 group">
                              <div className="text-2xl font-light text-[#70a2ad]/50 group-hover:text-[#70a2ad] transition-colors font-mono mt-[-4px]">
                                 {step.step}

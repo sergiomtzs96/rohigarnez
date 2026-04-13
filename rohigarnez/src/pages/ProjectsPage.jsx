@@ -144,13 +144,16 @@ export function ProjectsPage({ onNavigate, user }) {
       <section className="border-b border-[#141516]/5 bg-gray-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#141516]/10">
-            {infoData?.stats?.map((stat, index) => (
-              <div key={index} className="py-8 text-center px-4 group hover:bg-white transition-colors">
-                <stat.icon className="h-6 w-6 text-[#141516] mx-auto mb-3 group-hover:text-[#70a2ad] transition-colors" />
-                <div className="text-2xl font-light text-[#141516] mb-1 font-[Urbanist]">{stat.value}</div>
-                <div className="text-[10px] uppercase tracking-widest text-gray-500 font-mono">{stat.label}</div>
-              </div>
-            ))}
+            {infoData?.stats?.map((stat, index) => {
+              const Icon = iconMap[stat.icon];
+              return (
+                <div key={index} className="py-8 text-center px-4 group hover:bg-white transition-colors">
+                  {Icon && <Icon className="h-6 w-6 text-[#141516] mx-auto mb-3 group-hover:text-[#70a2ad] transition-colors"/>}
+                  <div className="text-2xl font-light text-[#141516] mb-1 font-[Urbanist]">{stat.value}</div>
+                  <div className="text-[10px] uppercase tracking-widest text-gray-500 font-mono">{stat.label}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

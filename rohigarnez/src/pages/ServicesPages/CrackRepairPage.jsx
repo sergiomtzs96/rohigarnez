@@ -1,47 +1,27 @@
-import React from 'react';
-import { Hammer, CheckCircle, AlertTriangle, Shield, Eye, ArrowRight, Activity, Layers } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { AlertTriangle, Layers } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 
 
-export function CrackRepairPage({ onNavigate }) {
-  const crackTypes = [
-    {
-      title: 'Grietas Superficiales',
-      id: 'TYPE-A',
-      description: 'Fisuras en el revestimiento sin compromiso estructural inmediato.',
-      solution: 'Sellado técnico y acabado estético.',
-      severity: 'low'
-    },
-    {
-      title: 'Grietas Estructurales',
-      id: 'TYPE-B',
-      description: 'Fracturas pasantes que afectan la integridad del vaso de hormigón.',
-      solution: 'Grapado estructural e inyección de resinas epoxi.',
-      severity: 'critical'
-    },
-    {
-      title: 'Fisuras en Ángulos',
-      id: 'TYPE-C',
-      description: 'Roturas por tensión en la unión losa-muro.',
-      solution: 'Refuerzo perimetral y banda elástica.',
-      severity: 'high'
-    },
-    {
-      title: 'Desprendimientos',
-      id: 'TYPE-D',
-      description: 'Fellos en la adherencia del revestimiento o gresite.',
-      solution: 'Saneamiento y reposición de material.',
-      severity: 'medium'
-    }
-  ];
+export default function CrackRepairPage({ onNavigate }) {
+  
 
-  const process = [
-    { title: 'Análisis Estructural', desc: 'Evaluación de la profundidad y causa raíz de la fisura.' },
-    { title: 'Preparación Mecánica', desc: 'Apertura de la grieta en "V" para garantizar penetración.' },
-    { title: 'Grapado Metálico', desc: 'Inserción de grapas de acero inoxidable cada 20cm.' },
-    { title: 'Inyección Química', desc: 'Relleno con resinas epoxi de alta resistencia.' },
-    { title: 'Acabado Estético', desc: 'Recubrimiento compatible con el revestimiento existente.' }
-  ];
+  const [data, setData] = useState(null);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const res = await fetch(
+            `${import.meta.env.VITE_API_URL}/api/services/crackrepairpage`
+          )
+          const data = await res.json();
+          setData(data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      fetchData();
+    }, []);
 
   return (
     <main className="min-h-screen bg-white">
@@ -126,7 +106,7 @@ export function CrackRepairPage({ onNavigate }) {
                    </div>
                    
                    {/* Rows */}
-                   {crackTypes.map((type, i) => (
+                   {data?.content?.crackTypes?.map((type, i) => (
                       <div key={i} className="grid grid-cols-1 md:grid-cols-12 gap-4 p-6 border-b border-[#141516]/10 last:border-b-0 hover:bg-[#f8f9fa] transition-colors items-center group">
                          <div className="col-span-4">
                             <div className="flex items-center gap-3">
@@ -161,7 +141,7 @@ export function CrackRepairPage({ onNavigate }) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-5 gap-0 border-l border-white/10">
-               {process.map((step, i) => (
+               {data?.content?.process?.map((step, i) => (
                   <div key={i} className="p-8 border-r border-t border-b md:border-t-0 md:border-b-0 border-white/10 hover:bg-white/5 transition-colors group relative">
                      <div className="text-4xl font-light text-white/10 font-mono mb-6 group-hover:text-[#70a2ad] transition-colors">
                         0{i + 1}

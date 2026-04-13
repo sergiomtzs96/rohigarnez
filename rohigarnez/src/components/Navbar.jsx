@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Menu, X, ChevronDown, User, LogOut } from 'lucide-react';
 import { Button } from './ui/button';
-import Logo from '../assets/shared/icons/Logo.svg'
+import Logo from '../assets/shared/icons/aquacleanprologo.png'
 
 export function Navbar({ currentPage, onNavigate, user, onLogout }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,8 +68,8 @@ export function Navbar({ currentPage, onNavigate, user, onLogout }) {
               onClick={() => handleNavClick('home')}
               className="text-2xl font-light tracking-wide text-white hover:opacity-80 transition-opacity flex items-center"
             >
-              <img src={Logo} alt='logo' className='w-15 h-15' />
-              Rohi<span className="font-semibold text-[#70a2ad]">Garnez</span>
+              <img src={Logo} alt='logo' className='w-20 h-20' />
+              Aqua<span className="font-semibold text-[#70a2ad]">CleanPro</span>
             </button>
           </div>
 
@@ -172,7 +172,7 @@ export function Navbar({ currentPage, onNavigate, user, onLogout }) {
                   onClick={() => handleNavClick('contact')}
                   className="bg-[#70a2ad] text-white hover:bg-[#5a8b96] rounded-none px-6 h-10 text-xs font-bold uppercase tracking-widest transition-all"
                 >
-                  Catálogo Renolit
+                  Catálogo
                 </Button>
                 <Button
                   variant="outline"

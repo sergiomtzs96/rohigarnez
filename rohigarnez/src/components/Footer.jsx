@@ -32,7 +32,7 @@ export function Footer({ onNavigate }) {
                 <div className="w-8 h-px bg-[#70a2ad]"></div>
                 <span className="text-[#70a2ad] font-mono text-xs uppercase tracking-[0.2em]">Ingeniería Acuática</span>
               </div>
-              <h3 className="text-3xl font-light tracking-wide text-white mb-6 font-[Urbanist]">Rohigarnez &nbsp; <span className="font-semibold text-[#70a2ad]">S.L.</span></h3>
+              <h3 className="text-3xl font-light tracking-wide text-white mb-6 font-[Urbanist]">Aqua &nbsp; <span className="font-semibold text-[#70a2ad]">CleanPro</span></h3>
               <p className="text-sm text-gray-500 font-light leading-relaxed max-w-sm border-l border-white/10 pl-4">
                 Especialistas en la gestión técnica del ciclo del agua.
                 Mantenimiento, diagnóstico y construcción con los más altos estándares de calidad.
@@ -107,7 +107,7 @@ export function Footer({ onNavigate }) {
                 </div>
                 <div>
                   <span className="text-xs text-gray-500 uppercase tracking-wider block mb-1">Email</span>
-                  <span className="text-sm text-white font-light group-hover:text-[#70a2ad] transition-colors">rohigarnez@mail.com</span>
+                  <span className="text-sm text-white font-light group-hover:text-[#70a2ad] transition-colors">aquacleanpro@mail.com</span>
                 </div>
               </div>
 

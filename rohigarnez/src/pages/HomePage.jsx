@@ -107,7 +107,7 @@ export function HomePage({ onNavigate, user }) {
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-[#141516]/10 pb-10">
             <div className="max-w-2xl">
               <h2 className="text-3xl md:text-4xl font-light text-[#141516] mb-4 font-[Urbanist] tracking-wide">
-                ¿Por qué elegir <span className="text-[#70a2ad] font-semibold">Rohigarnez S.L.</span>?
+                ¿Por qué elegir <span className="text-[#70a2ad] font-semibold">AquaCleanPro</span>?
               </h2>
               <p className="text-lg text-gray-600 font-light">
                 Liderazgo técnico y estándares de calidad superior en el mantenimiento de piscinas.

@@ -1,45 +1,34 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Settings, CheckCircle, Phone } from 'lucide-react';
 import { Button } from '../../components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { Badge } from '../../components/ui/badge';
 
 
 
-export function GenericServicePage({ 
+export default function GenericServicePage({ 
   onNavigate, 
-  title, 
-  subtitle, 
-  description,
-  category,
-  color = 'blue'
+  slug
 }) {
-  const colorAccents = {
-    blue: 'bg-blue-500',
-    green: 'bg-green-500',
-    orange: 'bg-orange-500',
-    purple: 'bg-purple-500',
-    cyan: 'bg-cyan-500',
-    pink: 'bg-pink-500'
-  };
+  
 
-  const textAccents = {
-    blue: 'text-blue-500',
-    green: 'text-green-500',
-    orange: 'text-orange-500',
-    purple: 'text-purple-500',
-    cyan: 'text-cyan-500',
-    pink: 'text-pink-500'
-  };
+  const [data, setData] = useState(null);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const res = await fetch(
+            `${import.meta.env.VITE_API_URL}/api/services/${slug}`
+          )
+          const data = await res.json();
+          setData(data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      fetchData();
+    }, [slug]);
 
-  const features = [
-    'Profesionales con más de 15 años de experiencia',
-    'Materiales y equipos de primera calidad',
-    'Presupuesto detallado sin compromiso',
-    'Trabajo garantizado y certificado',
-    'Atención personalizada',
-    'Cumplimiento de plazos acordados'
-  ];
+    if (!data) return <div>Cargando...</div>
+    const { title, subtitle, description, category } = data;
 
   return (
     <main className="min-h-screen bg-white">
@@ -99,7 +88,7 @@ export function GenericServicePage({
                 Excelencia <span className="text-[#70a2ad] font-medium">Técnica</span>
               </h2>
               <p className="text-gray-500 mb-12 leading-relaxed font-light text-lg">
-                En AquaClean Pro ofrecemos servicios profesionales de {title.toLowerCase()} bajo estrictos protocolos de calidad. 
+                En AquaClean Pro ofrecemos servicios profesionales de {title?.toLowerCase() || ''} bajo estrictos protocolos de calidad. 
                 Nuestro equipo técnico garantiza resultados superiores mediante procedimientos estandarizados.
               </p>
               
@@ -112,7 +101,7 @@ export function GenericServicePage({
                      </div>
                  </div>
                  <ul className="divide-y divide-[#141516]/5">
-                   {features.map((feature, index) => (
+                   {data?.content?.features?.map((feature, index) => (
                      <li key={index} className="flex items-start gap-4 p-5 hover:bg-white transition-colors group">
                        <div className="w-1.5 h-1.5 bg-[#70a2ad] mt-2 shrink-0 group-hover:scale-125 transition-transform duration-300"></div>
                        <span className="text-sm text-gray-600 font-light">{feature}</span>
@@ -130,13 +119,7 @@ export function GenericServicePage({
                   </h3>
                   
                   <div className="space-y-12">
-                    {[
-                      { step: '01', title: 'Contacto Inicial', desc: 'Recepción de requerimientos y análisis preliminar.' },
-                      { step: '02', title: 'Visita y Valoración', desc: 'Inspección técnica in-situ para diagnóstico preciso.' },
-                      { step: '03', title: 'Propuesta Técnica', desc: 'Presupuesto detallado con desglose de materiales y mano de obra.' },
-                      { step: '04', title: 'Ejecución', desc: 'Desarrollo del servicio bajo supervisión técnica constante.' },
-                      { step: '05', title: 'Entrega y Garantía', desc: 'Verificación funcional y certificado de garantía.' }
-                    ].map((item) => (
+                    {data?.content?.steps?.map((item) => (
                       <div key={item.step} className="relative group">
                         {/* Timeline Marker */}
                         <div className="absolute -left-[41px] top-0.5 bg-white py-1">

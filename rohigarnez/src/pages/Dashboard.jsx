@@ -56,7 +56,7 @@ export default function Dashboard({ userType, editType }) {
             <div className='flex items-center justify-between pb-10'>
                 <div>
                     <h1>Panel de Administración</h1>
-                    <p>Gestiona el contenido de Rohigarnez S.L.</p>
+                    <p>Gestiona el contenido de AquaCleanPro</p>
                 </div>
                 <div>
                     <Button>Volver al sitio web</Button>
