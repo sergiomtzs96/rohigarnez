@@ -146,7 +146,6 @@ export default function Login({ onNavigate, onLogin }) {
               </div>
               <div className="text-xs text-gray-500 space-y-2 font-mono">
                 <p className="flex justify-center gap-2"><span className="text-[#141516] font-bold">ADMIN:</span> aquacleanpro@admin.com / admin123</p>
-                <p className="flex justify-center gap-2"><span className="text-[#141516] font-bold">USER:</span> (Cualquier email / pass)</p>
               </div>
             </div>
 
